@@ -98,7 +98,7 @@ class AndroidDriver extends DeviceDriverBase {
     const pid = await this._queryPID(deviceId, bundleId);
 
     if (isNaN(pid)) {
-      log.warn(await this.adb.shell(deviceId, 'ps'));
+      log.warn(await this.adb.execOut(deviceId, 'ps'));
 
       throw new DetoxRuntimeError({
         message: `Failed to find PID of the launched bundle: ${bundleId}`,

@@ -36,18 +36,18 @@ class EmulatorTelnet {
       this.connection.shell((error, stream) => {
         stream.write(`${command}\n`);
         stream.on('data', (data) => {
-          const result = data.toString();
-          if (result.includes('\n')) {
-            resolve(result);
+            const result = data.toString();
+            if (result.includes('\n')) {
+              resolve(result);
+            }
           }
-        }
         );
       });
     });
   }
 
   async avdName() {
-    return await this.exec('avd name');
+    return this.exec('avd name');
   }
 
   async kill() {
@@ -61,7 +61,7 @@ class EmulatorTelnet {
   }
 
   async rotate() {
-    return await this.shell('rotate');
+    return this.shell('rotate');
   }
 }
 
